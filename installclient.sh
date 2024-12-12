@@ -16,6 +16,11 @@ unzip -o "client-${OS_ARCH}-unknown-linux-musl.zip"
 # 提示用户输入用户名
 read -p "请输入用户名(-u 参数): " USERNAME
 
+# 检查用户是否输入了用户名
+if [[ -z "$USERNAME" ]]; then
+  echo "用户名不能为空！"
+  exit 1
+fi
 # 修改 stat_client.service 文件
 SERVICE_FILE=/etc/systemd/system/stat_client.service
 
