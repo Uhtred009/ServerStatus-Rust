@@ -22,8 +22,23 @@ fi
 # 设置文件权限
 chmod +x "$FILE_PATH"
 
-# 提示用户输入 USER
-read -p "请输入用户名 (USER 参数): " USERNAME
+# 获取用户名
+while getopts "u:" opt; do
+    case $opt in
+        u) USERNAME="$OPTARG" ;;
+        *) echo "无效参数" && exit 1 ;;
+    esac
+done
+
+# 如果没有提供用户名，则交互式提示
+if [[ -z "$USERNAME" ]]; then
+    while [[ -z "$USERNAME" ]]; do
+        read -p "请输入用户名 (USER 参数): " USERNAME
+        if [[ -z "$USERNAME" ]]; then
+            echo "用户名不能为空，请重新输入。"
+        fi
+    done
+fi
 
 # 修改文件中的 USER 参数
 sed -i "s/^USER = .*$/USER = \"$USERNAME\"/" "$FILE_PATH"
