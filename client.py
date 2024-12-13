@@ -10,7 +10,7 @@ import platform
 
 SERVER = "mm.auto987.com"
 PORT = 35601
-USER = "cn98"
+USER = ""
 PASSWORD = "doub.io"
 INTERVAL = 1  # 更新间隔，单位：秒
 
