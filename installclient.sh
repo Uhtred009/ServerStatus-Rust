@@ -34,7 +34,7 @@ User=root
 Group=root
 Environment="RUST_BACKTRACE=1"
 WorkingDirectory=/opt/ServerStatus
-ExecStart=/opt/ServerStatus/stat_client -a "http://m.auto987.com:8080/report" -u $USERNAME -p mm.erzi
+ExecStart=/opt/ServerStatus/stat_client -a "http://m.auto987.com:8989" -u $USERNAME -p mm.erzi
 ExecReload=/bin/kill -HUP \$MAINPID
 Restart=on-failure
 
