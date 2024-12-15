@@ -174,7 +174,7 @@ def main():
             logging.info("未发现 Down 服务器")
 
         # 每小时运行一次
-        time.sleep(3600)
+        time.sleep(21600)
 
 if __name__ == '__main__':
     main()
