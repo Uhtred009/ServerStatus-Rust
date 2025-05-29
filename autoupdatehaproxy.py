@@ -48,8 +48,9 @@ def get_down_servers(socket_path):
 
 def extract_backend_block(config_content, backend_name):
     """提取指定 backend 的配置块"""
-    pattern = rf'backend\s+{re.escape(backend_name)}\s*\n(.*?)(?=\nbackend|\Z)'
-    match = re.search(pattern, config_content, re.DOTALL)
+    # 修改正则表达式，允许backend前面有空格
+    pattern = rf'^\s*backend\s+{re.escape(backend_name)}\s*\n(.*?)(?=^\s*(?:backend|frontend)|\Z)'
+    match = re.search(pattern, config_content, re.DOTALL | re.MULTILINE)
     return match.group(0) if match else None
 
 def backend_has_backup(backend_block):
